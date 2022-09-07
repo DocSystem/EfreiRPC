@@ -14,10 +14,13 @@ def self_update():
             print("Mise à jour de EfreiRPC v" + VERSION + " vers v" + new_ver)
             r_main = requests.get("https://raw.githubusercontent.com/DocSystem/EfreiRPC/master/main.py")
             r_setup = requests.get("https://raw.githubusercontent.com/DocSystem/EfreiRPC/master/setup.py")
+            r_update = requests.get("https://raw.githubusercontent.com/DocSystem/EfreiRPC/master/update.py")
             with open("main.py", "w") as f:
                 f.write(r_main.text)
             with open("setup.py", "w") as f:
                 f.write(r_setup.text)
+            with open("update.py", "w") as f:
+                f.write(r_update.text)
             with open("VERSION", "w") as f:
                 f.write(new_ver)
             print("Mise à jour effectuée !")

@@ -19,6 +19,7 @@ def setup_planning():
 def setup_discord():
     print("======== DISCORD RPC ========")
     print("Veuillez choisir les données que vous souhaitez afficher sur votre profil Discord.")
+    print("Vous pouvez choisir 2 données à afficher (1 par ligne).")
     print("1. Nom du cours")
     print("2. Nom du professeur")
     print("3. Salle")
