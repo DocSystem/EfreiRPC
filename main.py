@@ -77,6 +77,10 @@ def run_rpc():
             else:
                 hide_presence()
             time.sleep(15)
+    except KeyboardInterrupt:
+        print("Arrêt de EfreiRPC...")
+        RPC.close()
+        exit(0)
     except:
         run_rpc()
 
