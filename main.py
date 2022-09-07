@@ -5,12 +5,17 @@ import datetime
 import time
 import pytz
 import json
+import update
+
+with open("VERSION") as f:
+    VERSION = f.read().strip()
 
 try:
     with open("config.json", "r") as f:
         CONFIG = json.load(f)
 except FileNotFoundError:
     import setup
+
     CONFIG = setup.CONFIG
 
 DISCORD_APPID = "1016321832992903168"
@@ -41,13 +46,16 @@ def get_current_event(calendar):
 
 
 def show_presence(event):
-    RPC.update(details=event[CONFIG["first_key"]], state=event[CONFIG["second_key"]], large_image=CONFIG["large_icon"], large_text=CONFIG["large_icon_text"], start=int(time.mktime(event["start"].timetuple())) + 3600, end=int(time.mktime(event["end"].timetuple())) + 3600)
+    RPC.update(details=event[CONFIG["first_key"]], state=event[CONFIG["second_key"]], large_image=CONFIG["large_icon"],
+               large_text=CONFIG["large_icon_text"], start=int(time.mktime(event["start"].timetuple())) + 3600,
+               end=int(time.mktime(event["end"].timetuple())) + 3600)
 
 
 def hide_presence():
     RPC.clear()
 
 
+print("Démarrage de EfreiRPC v" + VERSION)
 print("Démarrage de la Rich Presence Discord...")
 RPC = Presence(DISCORD_APPID)
 RPC.connect()
@@ -58,10 +66,19 @@ cal = get_agenda()
 print("Planning téléchargé !")
 
 print("Démarrage de l'actualisation de la Rich Presence...")
-while True:
-    curr_event = get_current_event(cal)
-    if curr_event is not None:
-        show_presence(curr_event)
-    else:
-        hide_presence()
-    time.sleep(15)
+
+
+def run_rpc():
+    try:
+        while True:
+            curr_event = get_current_event(cal)
+            if curr_event is not None:
+                show_presence(curr_event)
+            else:
+                hide_presence()
+            time.sleep(15)
+    except:
+        run_rpc()
+
+
+run_rpc()
