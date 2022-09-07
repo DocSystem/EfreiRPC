@@ -27,9 +27,12 @@ def setup_discord():
     print(" ")
     print("Veuillez choisir l'icône que vous souhaitez afficher sur votre profil Discord.")
     print("1. Efrei blanc")
-    print("2. Efrei couleur")
-    print("3. Efrei couleur sur fond blanc")
-    CONFIG["large_icon"] = ["efrei_white", "efrei_color", "efrei_color_bg"][int(input("Icône : ").strip()) - 1]
+    print("2. Efrei blanc sur fond noir")
+    print("3. Efrei noir")
+    print("4. Efrei noir sur fond blanc")
+    print("5. Efrei couleur")
+    print("6. Efrei couleur sur fond blanc")
+    CONFIG["large_icon"] = ["efrei_white", "efrei_white_bg", "efrei_black", "efrei_black_bg", "efrei_color", "efrei_color_bg"][int(input("Icône : ").strip()) - 1]
     CONFIG["large_icon_text"] = input("Texte de l'icône : ").strip()
     print(" ")
 
