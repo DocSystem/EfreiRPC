@@ -82,6 +82,8 @@ def run_rpc():
         RPC.close()
         exit(0)
     except:
+        print("Une erreur est survenue, redémarrage dans 15 secondes.")
+        time.sleep(15)
         run_rpc()
 
 
