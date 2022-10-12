@@ -48,7 +48,7 @@ def get_current_event(calendar):
 def show_presence(event):
     RPC.update(details=event[CONFIG["first_key"]], state=event[CONFIG["second_key"]], large_image=CONFIG["large_icon"],
                large_text=CONFIG["large_icon_text"], start=int(time.mktime(event["start"].timetuple())) + 3600,
-               end=int(time.mktime(event["end"].timetuple())) + 3600)
+               end=int(time.mktime(event["end"].timetuple())) + 3600, buttons=[{"label": "Website", "url": "https://github.com/DocSystem/EfreiRPC"}])
 
 
 def hide_presence():
